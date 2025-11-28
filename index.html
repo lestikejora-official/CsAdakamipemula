@@ -3,71 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pusat Bantuan - Adakami</title>
-    <!-- Memuat Tailwind CSS -->
+    <title>RPTX PRO | Perbaikan Kalimat Premium</title>
+    <!-- Memuat Tailwind CSS untuk Styling Modern -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Konfigurasi Tailwind untuk Font Inter dan Custom Style -->
+    <!-- Memuat Font Inter dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        /* Menggunakan font Inter secara default */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Background lebih soft */
+            background-color: #0d1117; /* Latar belakang sangat gelap */
+            color: #e5e7eb; /* Teks putih keabu-abuan */
         }
-        /* Menggunakan warna hijau dari logo untuk aksen */
-        .adakami-green {
-            background-color: #007F4F;
+        /* Styling untuk Aksen Emas (Gold) */
+        .text-gold {
+            color: #FFD700; /* Warna emas */
+        }
+        .border-gold {
+            border-color: #FFD700;
+        }
+        .ring-gold:focus {
+            --tw-ring-color: #FFD700;
+        }
+        /* Custom scrollbar untuk tampilan premium */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background-color: #4b5563; /* Abu-abu gelap */
+            border-radius: 4px;
+        }
+        textarea::-webkit-scrollbar-thumb:hover {
+            background-color: #6b7280;
+        }
+
+        /* Kelas untuk efek tombol premium */
+        .btn-gold {
+            background-color: #FFD700;
+            color: #1f2937;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 6px -1px rgba(255, 215, 0, 0.2), 0 2px 4px -2px rgba(255, 215, 0, 0.2);
+        }
+        .btn-gold:hover {
+            background-color: #e5c100;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 10px -1px rgba(255, 215, 0, 0.3), 0 4px 6px -3px rgba(255, 215, 0, 0.3);
+        }
+        .btn-gold:active {
+            background-color: #ccac00;
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        /* Styling untuk alert pesan salin */
+        #copy-message {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        .show-message {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col items-center p-4">
+<body class="min-h-screen p-4 md:p-8 flex items-center justify-center">
 
-    <!-- Kontainer Utama -->
-    <div class="bg-white shadow-2xl rounded-3xl w-full max-w-sm sm:max-w-md p-6 md:p-8 mt-8 border border-gray-100">
+    <!-- Kontainer Utama Aplikasi -->
+    <div class="w-full max-w-4xl bg-[#1f2937] p-6 md:p-10 rounded-xl shadow-2xl border border-gray-700">
 
-        <!-- Header dengan Logo dan Teks -->
-        <header class="text-center mb-8">
-            <!-- Logo menggunakan file yang diunggah -->
-            <svg src="uploaded:CsAdakami.svg-a3ee4f9c-e9ac-4965-8749-1a9921d8c44f" alt="Logo Adakami" class="mx-auto h-16 w-16 mb-4 rounded-xl shadow-inner adakami-green p-1"> 
-            <h1 class="text-3xl font-extrabold text-gray-800 tracking-tight">Pusat Bantuan</h1>
-            <p class="text-white text-md mt-3 inline-block px-3 py-1 rounded-full font-semibold adakami-green shadow-md">Adakami</p>
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gold">RPTX PRO</h1>
+            <p class="mt-2 text-gray-400 text-lg">Perbaiki Kalimatmu. Sempurnakan Komunikasimu.</p>
         </header>
 
-        <!-- Informasi Kontak (PENTING) -->
-        <div class="mb-10 p-4 bg-red-50 border-l-4 border-red-500 rounded-lg">
-            <h2 class="text-sm font-bold text-red-700 mb-1">PERHATIAN PENTING</h2>
-            <p class="text-sm text-red-600">
-                Mengalami kendala dengan akun Anda atau butuh bantuan mendesak? Tim layanan pelanggan kami siap melayani Anda 24 jam.
-            </p>
-        </div>
+        <!-- Area Input -->
+        <section class="mb-8">
+            <label for="input-text" class="block text-lg font-medium mb-2 text-gray-300">Kalimat Awal (Tidak Baku)</label>
+            <textarea
+                id="input-text"
+                rows="4"
+                placeholder="Masukkan kalimat yang ingin kamu perbaiki di sini..."
+                class="w-full p-4 text-base bg-[#2a3443] text-gray-100 border border-gray-600 rounded-lg focus:outline-none ring-2 ring-transparent focus:ring-gold transition duration-200"
+            ></textarea>
+        </section>
 
-        <!-- Tombol WhatsApp -->
-        <div class="mb-10">
-            <a id="whatsapp-link" href="#" target="_blank" class="w-full flex items-center justify-center px-6 py-4 border border-transparent text-lg font-bold rounded-xl shadow-lg text-white bg-green-500 hover:bg-green-600 transition duration-300 transform hover:scale-[1.02] active:scale-95 ease-in-out">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12.0001 2.00011C6.48629 2.00011 2.0001 6.48629 2.0001 12.0002C2.0001 13.9219 2.50036 15.7607 3.42146 17.3995L2.15835 21.9219L6.80496 20.6548C8.36622 21.4936 10.1458 22.0002 12.0001 22.0002C17.5139 22.0002 22.0001 17.514 22.0001 12.0002C22.0001 6.48629 17.5139 2.00011 12.0001 2.00011ZM17.1524 15.1102C16.899 15.6881 16.0827 16.1437 15.6983 16.2081C15.3138 16.2725 14.8812 16.3151 14.4967 16.2107C14.0536 16.0898 12.9248 15.7054 11.5178 15.0258C10.1107 14.3463 9.07908 13.3371 8.35852 12.288C7.63795 11.2389 7.21774 10.1077 7.0968 9.66459C6.97587 9.22146 7.15745 8.78491 7.28751 8.41916C7.41756 8.0534 7.56213 7.73467 7.78363 7.56787C8.00512 7.40106 8.24669 7.33664 8.44896 7.33664C8.65123 7.33664 8.87272 7.3792 9.04944 7.42177C9.22616 7.46433 9.42844 7.54964 9.60515 7.91539C9.78187 8.28114 10.2796 9.42189 10.3703 9.60515C10.461 9.78841 10.5517 9.97167 10.509 10.2205C10.4663 10.4693 10.3756 10.6051 10.2455 10.7409C10.1155 10.8767 9.94432 11.0126 9.81427 11.1484C9.68422 11.2842 9.53965 11.3789 9.64687 11.5622C9.75408 11.7454 10.1107 12.3501 10.6552 12.8741C11.1998 13.3981 11.6628 13.5658 11.8395 13.6502C12.0162 13.7346 12.1874 13.7133 12.3175 13.6289C12.4475 13.5445 12.7203 13.2505 13.006 12.9565C13.2917 12.6626 13.5518 12.6839 13.9189 12.8721C14.286 13.0583 14.8028 13.3323 15.3473 13.5658C15.8919 13.7994 16.3245 13.9788 16.5012 14.0705C16.6779 14.1622 17.027 14.331 17.157 14.5911C17.2871 14.8512 17.2871 15.0199 17.157 15.1102Z"/>
+        <!-- Tombol Aksi -->
+        <div class="flex flex-col sm:flex-row gap-4 mb-10">
+            <button
+                id="fix-button"
+                class="w-full py-3 px-6 rounded-lg text-lg font-semibold btn-gold flex items-center justify-center"
+            >
+                <svg id="fix-icon" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <svg id="loading-spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-800 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                HUBUNGI KAMI VIA WHATSAPP
-            </a>
-            <p class="text-xs text-center text-gray-500 mt-2">Layanan Pelanggan 24 Jam</p>
+                Perbaiki Kalimat
+            </button>
         </div>
 
-        <!-- Footer -->
-        <footer class="text-center pt-6 border-t mt-6 text-xs text-gray-400">
-            &copy; 2025 Adakami. Seluruh hak cipta dilindungi undang-undang.
-        </footer>
+        <!-- Area Output -->
+        <section>
+            <label class="block text-lg font-medium mb-2 text-gray-300 flex justify-between items-center">
+                <span>Hasil Perbaikan (Baku)</span>
+                <button
+                    id="copy-button"
+                    class="px-3 py-1 text-sm rounded-md bg-gray-600 text-gray-200 hover:bg-gray-500 transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled
+                >
+                    <svg class="w-4 h-4 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2"></path></svg>
+                    Salin Hasil
+                </button>
+            </label>
+            <textarea
+                id="output-text"
+                rows="4"
+                placeholder="Hasil perbaikan kalimat akan muncul di sini."
+                readonly
+                class="w-full p-4 text-base bg-[#2a3443] text-gray-100 border border-gray-600 rounded-lg focus:outline-none resize-none cursor-default"
+            ></textarea>
+             <!-- Pesan Error -->
+            <p id="error-message" class="text-red-400 mt-2 hidden text-sm">Terjadi kesalahan saat memproses permintaan. Silakan coba lagi.</p>
+        </section>
+
     </div>
 
-    <!-- Kotak Pesan Kustom untuk Pemberitahuan (Mirip Toast) -->
-    <div id="message-box" class="fixed top-0 left-1/2 transform -translate-x-1/2 mt-4 p-3 bg-black text-white text-sm rounded-lg shadow-xl transition-opacity duration-300 opacity-0 z-50 pointer-events-none">
-        Teks disalin!
+    <!-- Pesan Salin Berhasil (Notification Toast) -->
+    <div id="copy-message" class="bg-green-600 text-white px-4 py-2 rounded-lg shadow-xl text-sm">
+        Hasil perbaikan berhasil disalin!
     </div>
 
-    <script>
-        // =========================================================
-        // PENTING! GANTI NOMOR WHATSAPP DI SINI
-        // Gunakan format kode negara + nomor, tanpa tanda +, spasi, atau strip. Contoh: 6281234567890
-        const WHATSAPP_NUMBER = "6287788836766"; // Nomor WhatsApp
-        // =========================================================
+    <script type="module">
+        // Variabel global sudah disediakan oleh lingkungan Canvas
+        const apiKey = ""; // Dibiarkan kosong, akan diisi otomatis oleh Canvas
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+        // Elemen DOM
+        const inputTextArea = document.getElementById('input-text');
+        const outputTextArea = document.getElementById('output-text');
+        const fixButton = document.getElementById('fix-button');
+        const copyButton = document.getElementById('copy-button');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const fixIcon = document.getElementById('fix-icon');
+        const errorMessage = document.getElementById('error-message');
+        const copyMessage = document.getElementById('copy-message');
+
+        /**
+         * Menampilkan pesan notifikasi salin selama 2 detik.
+         */
+        function showCopyMessage() {
+            copyMessage.classList.add('show-message');
+            setTimeout(() => {
+                copyMessage.classList.remove('show-message');
+            }, 2000);
+        }
+
+        /**
+         * Fungsi untuk menyalin teks ke clipboard.
+         * Menggunakan metode document.execCommand('copy') sebagai fallback di iframe.
+         */
+        function copyOutputText() {
+            const textToCopy = outputTextArea.value;
+
+            // Buat elemen textarea sementara
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = textToCopy;
+            tempTextArea.style.position = 'fixed'; // Agar tidak terlihat
+            tempTextArea.style.left = '-9999px';
+            document.body.appendChild(tempTextArea);
+
+            tempTextArea.select();
+            
+            try {
+                // Gunakan execCommand sebagai metode yang paling reliable di lingkungan iframe
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showCopyMessage();
+                } else {
+                    console.error('Gagal menyalin menggunakan execCommand.');
+                }
+            } catch (err) {
+                console.error('Error saat menyalin:', err);
+            } finally {
+                document.body.removeChild(tempTextArea);
+            }
+        }
+
+
+        /**
+         * Mengatur status UI selama proses loading/API call.
+         * @param {boolean} isLoading - True jika sedang loading, False jika selesai.
+         */
+        function setUIState(isLoading) {
+            fixButton.disabled = isLoading;
+            inputTextArea.disabled = isLoading;
+            copyButton.disabled = isLoading || outputTextArea.value.trim() === '';
+            errorMessage.classList.add('hidden');
+            
+            if (isLoading) {
+                loadingSpinner.classList.remove('hidden');
+                fixIcon.classList.add('hidden');
+                fixButton.classList.remove('btn-gold');
+                fixButton.classList.add('bg-gray-700', 'text-gray-400');
+            } else {
+                loadingSpinner.classList.add('hidden');
+                fixIcon.classList.remove('hidden');
+                fixButton.classList.add('btn-gold');
+                fixButton.classList.remove('bg-gray-700', 'text-gray-400');
+            }
+        }
+
+        /**
+         * Melakukan panggilan ke Gemini API untuk perbaikan kalimat.
+         * Mengimplementasikan exponential backoff untuk retry.
+         * @param {string} text - Kalimat yang akan diperbaiki.
+         */
+        async function getFixedSentence(text) {
+            const systemPrompt = `Kamu adalah mesin perbaikan kalimat (Grammar and Punctuation Corrector) profesional berbahasa Indonesia. Tugasmu adalah:
+1. Memperbaiki struktur kalimat, tata bahasa (gramatika), dan tanda baca dari teks input pengguna.
+2. Memastikan hasil output adalah baku, jelas, dan lebih efektif.
+3. TIDAK PERNAH MENAMBAHKAN kata pengantar, pembuka, penutup, penjelasan, atau teks tambahan apa pun.
+4. Output HANYA boleh berupa kalimat perbaikan murni.
+Contoh:
+Input: Aku mau makan pergi pasar kamu ikut gak
+Output: Aku mau pergi ke pasar untuk makan, kamu mau ikut?
+`;
+
+            const payload = {
+                contents: [{ parts: [{ text: text }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+
+            const maxRetries = 3;
+            let currentRetry = 0;
+
+            while (currentRetry < maxRetries) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        // Jika status bukan 2xx, throw error untuk memicu retry
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        return candidate.content.parts[0].text.trim();
+                    } else {
+                        throw new Error("Respons API tidak valid atau kosong.");
+                    }
+
+                } catch (error) {
+                    console.error(`Percobaan ke-${currentRetry + 1} gagal:`, error);
+                    currentRetry++;
+
+                    if (currentRetry < maxRetries) {
+                        // Tunggu 2^retry * 1000 ms sebelum retry
+                        const delay = Math.pow(2, currentRetry) * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    } else {
+                        // Semua percobaan gagal
+                        throw new Error("Gagal mengambil hasil perbaikan setelah beberapa kali percobaan.");
+                    }
+                }
+            }
+        }
+
+        /**
+         * Handler utama saat tombol 'Perbaiki Kalimat' diklik.
+         */
+        async function handleFixSentence() {
+            const inputText = inputTextArea.value.trim();
+
+            if (!inputText) {
+                outputTextArea.value = "Silakan masukkan kalimat yang ingin kamu perbaiki terlebih dahulu.";
+                copyButton.disabled = true;
+                return;
+            }
+
+            setUIState(true);
+            outputTextArea.value = "Sedang memproses perbaikan...";
+            
+            try {
+                const fixedText = await getFixedSentence(inputText);
+                outputTextArea.value = fixedText;
+                errorMessage.classList.add('hidden');
+            } catch (error) {
+                console.error("Kesalahan fatal dalam perbaikan:", error);
+                outputTextArea.value = "Maaf, terjadi masalah saat memperbaiki kalimat. Silakan periksa koneksi atau coba lagi nanti.";
+                errorMessage.classList.remove('hidden');
+            } finally {
+                setUIState(false);
+                // Pastikan tombol salin diaktifkan hanya jika ada teks di output
+                copyButton.disabled = outputTextArea.value.trim() === '' || outputTextArea.value.includes("Maaf") || outputTextArea.value.includes("Silakan");
+            }
+        }
+
+        // --- Event Listeners ---
+        fixButton.addEventListener('click', handleFixSentence);
+        copyButton.addEventListener('click', copyOutputText);
+
+        // Update tombol salin saat output berubah
+        outputTextArea.addEventListener('input', () => {
+            copyButton.disabled = outputTextArea.value.trim() === '';
+        });
+
+        // Inisialisasi awal (memastikan tombol salin nonaktif jika output kosong)
+        copyButton.disabled = true;
+
+    </script>
+</body>
+</html>
+
 
         const messageBox = document.getElementById('message-box');
 
